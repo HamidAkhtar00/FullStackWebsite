@@ -1,23 +1,32 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
-import Home from './components/Home';  // Example component for Home page
-import Shop from './components/Shop';  // Example component for Shop page
-import Pages from './components/Pages';  // Example component for Pages page
-import Blog from './components/Blog';  // Example component for Blog page
-import Contact from './components/Contact';  // Example component for Contact page
 
+function Home() {
+  return <h1>Home Page</h1>;
+}
+
+function Contact() {
+  return <h1>Contact Page</h1>;
+}
+
+function FAQ() {
+  return <h1>FAQ Page</h1>;
+}
+
+function About() {
+  return <h1>About Page</h1>;
+}
 
 function App() {
   return (
-    <Router xs={{}}>
+    <Router>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/shop" element={<Shop />} />
-        <Route path="/pages" element={<Pages />} />
-        <Route path="/blog" element={<Blog />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/faq" element={<FAQ />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </Router>
   );

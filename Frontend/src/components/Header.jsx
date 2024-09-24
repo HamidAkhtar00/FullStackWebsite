@@ -1,94 +1,90 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // Only import Link, not Router
-import { AppBar, Toolbar, Typography, IconButton, Button, Select, MenuItem, InputBase, Box, Badge } from '@mui/material';
-import { Email, Facebook, Twitter, LinkedIn, Pinterest, ShoppingCart, Favorite, Search, Phone } from '@mui/icons-material';
-// import MenuIcon from '@mui/icons-material/Menu';
+import { AppBar, Toolbar, IconButton, Typography, InputBase, Menu, MenuItem } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import MenuIcon from '@mui/icons-material/Menu';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+
 const Header = () => {
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
-    <>
-      {/* Top Bar */}
-      <AppBar position="static" sx={{ backgroundColor: 'white', color: 'black', boxShadow: 'none', borderBottom: '1px solid #e0e0e0' ,margin:'20px'}}>
-        <Toolbar variant="dense" sx={{ justifyContent: 'space-between' }}>
-          <Box display="flex" alignItems="center">
-            <Email fontSize="small" />
-            <Typography variant="body2" sx={{ ml: 1 }}>eyewearprotection@gmail.com</Typography>
-            <Typography variant="body2" sx={{ mx: 2 }}>|</Typography>
-            <Typography variant="body2">Free Shipping for all Order of $99</Typography>
-          </Box>
-          <Box display="flex" alignItems="center">
-            <IconButton size="small" color="inherit"><Facebook /></IconButton>
-            <IconButton size="small" color="inherit"><Twitter /></IconButton>
-            <IconButton size="small" color="inherit"><LinkedIn /></IconButton>
-            <IconButton size="small" color="inherit"><Pinterest /></IconButton>
-            <Select variant="standard" defaultValue="EN" sx={{ ml: 2 }}>
-              <MenuItem value="EN">English</MenuItem>
-              <MenuItem value="ES">Spanish</MenuItem>
-            </Select>
-            <Button color="inherit">Login</Button>
-          </Box>
-        </Toolbar>
-      </AppBar>
+    <AppBar position="static" sx={{ backgroundColor: 'white', color: 'black', boxShadow: 'none', borderBottom: '2px solid #ccc' }}>
+      <Toolbar sx={{ justifyContent: 'space-between' }}>
+        {/* Left Section */}
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <IconButton edge="start" color="inherit" aria-label="menu">
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" sx={{ fontWeight: 'bold', marginLeft: 1 }}>
+            chashmay
+          </Typography>
+        </div>
 
-      {/* Main Header */}
-      <AppBar position="static" sx={{ backgroundColor: '#f8f8f8', color: 'black', boxShadow: 'none' }}>
-        <Toolbar sx={{display:'flex',flexDirection:'column',justifyContent: 'space-between' }}>
-          {/* Logo */}
-          <Box sx={{display:'flex',flexDirection:'row'}}>
-            <Typography variant="h6" component="div" sx={{ display: 'flex', alignItems: 'center',marginRight:'250px'}}>
-              <img src="#" alt="Logo" style={{ marginRight: '10px' }} />
-              LMSHA
+        {/* Center Section - Navigation */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+          <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>Home</Link>
+          <div>
+            <Typography
+              aria-controls="simple-menu"
+              aria-haspopup="true"
+              onClick={handleMenu}
+              style={{ cursor: 'pointer' }}
+            >
+              Categories
             </Typography>
-            {/* Navigation */}
-            <Box display="flex" alignItems="center">
-              <Button color="inherit" component={Link} to="/">Home</Button>
-              <Button color="inherit" component={Link} to="/shop">Shop</Button>
-              <Button color="inherit" component={Link} to="/pages">Pages</Button>
-              <Button color="inherit" component={Link} to="/blog">Blog</Button>
-              <Button color="inherit" component={Link} to="/contact">Contact</Button>
-            </Box>
+            <Menu
+              id="simple-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={handleClose}>Men Glasses</MenuItem>
+              <MenuItem onClick={handleClose}>Women Glasses</MenuItem>
+              <MenuItem onClick={handleClose}>Kids Glasses</MenuItem>
+            </Menu>
+          </div>
+          <Link to="/contact" style={{ textDecoration: 'none', color: 'black' }}>Contact</Link>
+          <Link to="/faq" style={{ textDecoration: 'none', color: 'black' }}>FAQ</Link>
+          <Link to="/about" style={{ textDecoration: 'none', color: 'black' }}>About</Link>
+        </div>
 
-        
-
-            {/* Icons */}
-            <Box display="flex" alignItems="center">
-              <IconButton color="inherit">
-                <Badge badgeContent={1} color="error">
-                  <Favorite />
-                </Badge>
-              </IconButton>
-              <IconButton color="inherit">
-                <Badge badgeContent={3} color="error">
-                  <ShoppingCart />
-                </Badge>
-              <Typography variant="body1" sx={{ marginLeft: 1 ,margin:'1rem'}}>
-                item: $150.00
-              </Typography>
-              </IconButton>
-    
-            </Box>
-          </Box>
-           {/* Search Bar */}
-            <Box sx={{ display: 'flex', padding: '2px 4px' }}>
-              <Box sx={{ display: 'flex', backgroundColor: 'white', borderRadius: '4px', padding: '2px 4px' }}>
-                <Select variant="standard" defaultValue="all" sx={{ mr: 1 }}>
-                  <MenuItem value="all">All Categories</MenuItem>
-                  {/* Add more categories as needed */}
-                </Select>
-                <InputBase placeholder="What do you need?" sx={{ ml: 1, flex: 1 }} />
-                <IconButton type="submit" sx={{ p: '10px' }}>
-                  <Search />
-                </IconButton>
-                
-                </Box>
-                <Box display="flex" alignItems="center" sx={{ ml: 2 }}>
-                  <Phone fontSize="small" />
-                  <Typography variant="body2" sx={{ ml: 1 }}>+65 11.188.888</Typography>
-                  <Typography variant="caption" display="block">support 24/7 time <br /></Typography>
-                </Box>
-            </Box>
-        </Toolbar>
-      </AppBar>
-    </>
+        {/* Right Section */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+          <div style={{ position: 'relative' }}>
+            <InputBase
+              placeholder="Search your products…"
+              inputProps={{ 'aria-label': 'search' }}
+              sx={{ border: '1px solid red', borderRadius: 3, paddingLeft: 2, paddingRight: 2 }}
+            />
+            <IconButton type="submit" sx={{ position: 'absolute', right: 0 }}>
+              <SearchIcon sx={{ color: 'red' }} />
+            </IconButton>
+          </div>
+          <IconButton color="inherit">
+            <AccountCircle />
+          </IconButton>
+          <IconButton color="inherit">
+            <FavoriteBorderIcon />
+          </IconButton>
+          <IconButton color="inherit">
+            <ShoppingCartIcon />
+          </IconButton>
+        </div>
+      </Toolbar>
+    </AppBar>
   );
 };
 
