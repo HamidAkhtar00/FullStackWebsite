@@ -1,68 +1,89 @@
-import React from 'react';
-import { AppBar, Toolbar, IconButton, Typography, InputBase, Menu, MenuItem } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
+import React, { useState } from 'react';
+import {
+  AppBar, Toolbar, IconButton, Typography, InputBase, Drawer, List, ListItem, ListItemText,
+  Divider, Box
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import MenuIcon from '@mui/icons-material/Menu';
+import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import logo from '../assets/images/logo1.png'; // Import the logo
 
 const Header = () => {
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
+  const toggleDrawer = (open) => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+    setDrawerOpen(open);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  // Drawer content (mobile menu)
+  const drawerList = () => (
+    <Box
+      sx={{ width: 250 }}
+      role="presentation"
+      onClick={toggleDrawer(false)}
+      onKeyDown={toggleDrawer(false)}
+    >
+      <List>
+        <ListItem button component={Link} to="/">
+          <ListItemText primary="Home" />
+        </ListItem>
+        <ListItem button component={Link} to="/categories">
+          <ListItemText primary="Categories" />
+        </ListItem>
+        <ListItem button component={Link} to="/contact">
+          <ListItemText primary="Contact" />
+        </ListItem>
+        <ListItem button component={Link} to="/faq">
+          <ListItemText primary="FAQ" />
+        </ListItem>
+        <ListItem button component={Link} to="/about">
+          <ListItemText primary="About" />
+        </ListItem>
+      </List>
+      <Divider />
+      <Box sx={{ display: 'flex', justifyContent: 'space-evenly', margin: '10px 0' }}>
+        <IconButton color="inherit">
+          <AccountCircle />
+        </IconButton>
+        <IconButton color="inherit">
+          <FavoriteBorderIcon />
+        </IconButton>
+        <IconButton color="inherit">
+          <ShoppingCartIcon />
+        </IconButton>
+      </Box>
+      <Box sx={{ padding: '10px' }}>
+        <InputBase
+          placeholder="Search…"
+          inputProps={{ 'aria-label': 'search' }}
+          sx={{ border: '1px solid red', borderRadius: 3, width: '100%', paddingLeft: 2 }}
+          
+        />
+      </Box>
+      
+    </Box>
+  );
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: 'white', color: 'black', boxShadow: 'none', borderBottom: '2px solid #ccc' }}>
+    <AppBar position="sticky" sx={{ backgroundColor: 'white ', color: 'black', boxShadow: 'none', borderBottom: '2px solid #ccc',margin:'0px' }}>
       <Toolbar sx={{ justifyContent: 'space-between' }}>
-        {/* Left Section */}
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <IconButton edge="start" color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" sx={{ fontWeight: 'bold', marginLeft: 1 }}>
-            chashmay
-          </Typography>
-        </div>
+        {/* Left Side - Logo */}
+        <img src={logo} alt="chashmay logo" style={{ width: '120px' }} />
 
-        {/* Center Section - Navigation */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+        {/* Desktop View */}
+        <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: '20px' }}>
           <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>Home</Link>
-          <div>
-            <Typography
-              aria-controls="simple-menu"
-              aria-haspopup="true"
-              onClick={handleMenu}
-              style={{ cursor: 'pointer' }}
-            >
-              Categories
-            </Typography>
-            <Menu
-              id="simple-menu"
-              anchorEl={anchorEl}
-              keepMounted
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-            >
-              <MenuItem onClick={handleClose}>Men Glasses</MenuItem>
-              <MenuItem onClick={handleClose}>Women Glasses</MenuItem>
-              <MenuItem onClick={handleClose}>Kids Glasses</MenuItem>
-            </Menu>
-          </div>
+          <Link to="/categories" style={{ textDecoration: 'none', color: 'black' }}>Categories</Link>
           <Link to="/contact" style={{ textDecoration: 'none', color: 'black' }}>Contact</Link>
           <Link to="/faq" style={{ textDecoration: 'none', color: 'black' }}>FAQ</Link>
           <Link to="/about" style={{ textDecoration: 'none', color: 'black' }}>About</Link>
-        </div>
 
-        {/* Right Section */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
           <div style={{ position: 'relative' }}>
             <InputBase
               placeholder="Search your products…"
@@ -82,8 +103,23 @@ const Header = () => {
           <IconButton color="inherit">
             <ShoppingCartIcon />
           </IconButton>
-        </div>
+        </Box>
+
+        {/* Mobile View */}
+        <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center' }}>
+          <IconButton color="inherit">
+            <AccountCircle />
+          </IconButton>
+          <IconButton edge="end" color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
+            <MenuIcon />
+          </IconButton>
+        </Box>
       </Toolbar>
+
+      {/* Drawer for Mobile Menu */}
+      <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
+        {drawerList()}
+      </Drawer>
     </AppBar>
   );
 };
