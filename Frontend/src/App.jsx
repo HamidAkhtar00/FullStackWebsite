@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import SlideBar from './components/slidebar';
 import Home from './components/Home'
+import FeatureBar from './components/FeatureBar';
 
 // function Home() {
 //   return <h1>Home Page</h1>;
@@ -25,6 +26,7 @@ function App() {
     <Router>
       <Header />
       <SlideBar />
+      <FeatureBar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
