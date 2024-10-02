@@ -1,9 +1,16 @@
 import React from 'react'
 
+import Categories from './Categories';
+import FAQComponent from './Faq';
+import ContactUsComponent from './Contact';
+
+
 const Home = () => {
   return (
     <div>
-      <h1>This is home</h1>
+      <Categories />
+      <ContactUsComponent/>
+      <FAQComponent/>
       
     </div>
   )

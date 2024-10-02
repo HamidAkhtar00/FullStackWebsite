@@ -42,8 +42,8 @@ const Header = () => {
         <ListItem button component={Link} to="/faq">
           <ListItemText primary="FAQ" />
         </ListItem>
-        <ListItem button component={Link} to="/about">
-          <ListItemText primary="About" />
+        <ListItem button component={Link} to="/Feedback">
+          <ListItemText primary="Feedback" />
         </ListItem>
       </List>
       <Divider />
@@ -82,7 +82,7 @@ const Header = () => {
           <Link to="/categories" style={{ textDecoration: 'none', color: 'black' }}>Categories</Link>
           <Link to="/contact" style={{ textDecoration: 'none', color: 'black' }}>Contact</Link>
           <Link to="/faq" style={{ textDecoration: 'none', color: 'black' }}>FAQ</Link>
-          <Link to="/about" style={{ textDecoration: 'none', color: 'black' }}>About</Link>
+          <Link to="/feedback" style={{ textDecoration: 'none', color: 'black' }}>Feedback</Link>
 
           <div style={{ position: 'relative' }}>
             <InputBase
