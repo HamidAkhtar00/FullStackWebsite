@@ -1,38 +1,37 @@
 import React from 'react';
 import { Box, Button, Typography, Grid, Card, CardMedia, CardContent } from '@mui/material';
-
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import menImg from '../assets/images/men.jpg'; // Dummy image for Men category
-import womenImg from '../assets/images/women.jpg'; // Dummy image for Women category
-import kidsImg from '../assets/images/kids.jpg'; // Dummy image for Kids category
+import menImg from '../assets/images/men.jpg'; 
+import womenImg from '../assets/images/women.jpg'; 
+import kidsImg from '../assets/images/kids.jpg'; 
 
 const categories = [
-    { id: 1, name: 'Men', image: menImg },
-    { id: 2, name: 'Women', image: womenImg },
-    { id: 3, name: 'Kids', image: kidsImg },
+  { id: 1, name: 'Men', image: menImg },
+  { id: 2, name: 'Women', image: womenImg },
+  { id: 3, name: 'Kids', image: kidsImg },
 ];
 
-const Categories = () => {
+const Categories = ({ onCategoryClick }) => {
   return (
-    <Box sx={{ padding: 2, backgroundColor: 'white', marginTop: 2 ,marginLeft:7,marginRight:7}}>
+    <Box sx={{ padding: 2, backgroundColor: 'white', marginTop: 2, marginLeft: 7, marginRight: 7 }}>
       <Typography variant="h4" align="center" gutterBottom>
         Shop by Category
       </Typography>
       <Grid container spacing={2} justifyContent="center">
         {categories.map(category => (
           <Grid item key={category.id} xs={12} sm={6} md={4}>
-            <Card 
+            <Card
+              onClick={() => onCategoryClick(category.name.toLowerCase())} // On click, pass the category name in lowercase
               sx={{
                 position: 'relative',
                 overflow: 'hidden',
                 transition: 'transform 0.3s ease',
                 '&:hover': {
-                  transform: 'scale(1.05)', // Slightly increase the card size
+                  transform: 'scale(1.05)',
                 },
                 '&:hover .card-content': {
                   opacity: 1,
                   transform: 'translateY(0)',
-                }
+                },
               }}
             >
               <CardMedia
@@ -54,16 +53,16 @@ const Categories = () => {
                   {category.name}
                 </Typography>
                 <Button
-              variant="contained"
-              sx={{
-                alignSelf: 'center',
-                background: 'linear-gradient(to right, #00c6ff, #0072ff)',
-                width: '150px',
-                color: '#fff',
-              }}
-            >
-              shop now
-            </Button>
+                  variant="contained"
+                  sx={{
+                    alignSelf: 'center',
+                    background: 'linear-gradient(to right, #00c6ff, #0072ff)',
+                    width: '150px',
+                    color: '#fff',
+                  }}
+                >
+                  Shop Now
+                </Button>
               </CardContent>
             </Card>
           </Grid>

@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import FAQComponent from './components/Faq';
 import ContactUsComponent from './components/Contact';
 import Categories from './components/Categories';
+import ProductDetails from './components/ProductDetails';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/faq" element={<FAQComponent />} />
         {/* <Route path="/feedback" element={<FeedbackSlider />} /> */}
         <Route path="/categories" element={<Categories />} />
+        <Route path="/product-details/:id" element={<ProductDetails />} />
       </Routes>
       <Footer />
     </Router>

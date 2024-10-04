@@ -1,11 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react';
+import Categories from './Categories';
+import Products from './Products';
 
 const Shop = () => {
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [showCategories, setShowCategories] = useState(true); // To control visibility of Categories
+
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+    setShowCategories(false); // Hide Categories once a category is clicked
+  };
+
   return (
     <div>
-      <h2>this is shop</h2>
-    </div>
-  )
-}
+      {/* Conditionally render the Categories component */}
+      {showCategories && <Categories onCategoryClick={handleCategoryClick} />}
+      {/* Always render Products component */}
+      <Products selectedCategory={selectedCategory} />
 
-export default Shop
+      {/* Add a button to reset and show the categories again */}
+      {!showCategories && (
+        <button onClick={() => setShowCategories(true)}>
+         Back to Categories
+        </button>
+      )}
+    </div>
+  );
+};
+
+export default Shop;

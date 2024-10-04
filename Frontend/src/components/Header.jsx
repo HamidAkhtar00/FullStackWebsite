@@ -71,7 +71,7 @@ const Header = () => {
   );
 
   return (
-    <AppBar position="sticky" sx={{ backgroundColor: 'white ', color: 'black', boxShadow: 'none', borderBottom: '2px solid #ccc',margin:'0px' }}>
+    <AppBar position="sticky" sx={{ backgroundColor: 'white ', color: 'rgb(18, 96, 113)', boxShadow: 'none', borderBottom: '2px solid #ccc',margin:'0px' }}>
       <Toolbar sx={{ justifyContent: 'space-between' }}>
         {/* Left Side - Logo */}
         <img src={logo} alt="chashmay logo" style={{ width: '120px' }} />
