@@ -1,20 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Grid, Typography, Box, Button, IconButton, Radio, RadioGroup, FormControlLabel, TextField } from '@mui/material';
-import { useNavigate, useLocation } from 'react-router-dom'; // <-- useLocation to retrieve product details
+import { useNavigate, useLocation } from 'react-router-dom'; 
 import { Add, Remove } from '@mui/icons-material';
+import { CartContext } from '../context/CartContext'; // Import the CartContext
 
 const ProductDetails = () => {
   const navigate = useNavigate();
-  const { state } = useLocation();  // <-- Retrieve the state passed from Products component
-  const { product } = state;        // Destructure the product from state
+  const { state } = useLocation();  
+  const { product } = state;        
+
+  const { addToCart } = useContext(CartContext); // Access addToCart from context
 
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState('56/18/135/140');
   const [selectedColor, setSelectedColor] = useState('Gold/Black');
 
   const handleAddToCart = () => {
+    const productData = {
+      id: product.id, // Assuming each product has a unique id
+      name: product.name,
+      image: product.image, // Ensure this is a valid URL
+      price: product.price, // Ensure this is a number or string representing a number
+      discountPrice: product.discountPrice, // Ensure this is a number or string representing a number
+      quantity: quantity,
+    };
+    
+    addToCart(productData);
     navigate('/shopping-cart');
   };
+  
 
   return (
     <Box sx={{ padding: 4 }}>
@@ -23,23 +37,22 @@ const ProductDetails = () => {
         <Grid item xs={12} md={6}>
           <Box sx={{ position: 'relative' }}>
             <img 
-              src={product.image} // <-- Change imageUrl to image
+              src={product.image} 
               alt={product.name} 
               style={{ width: '100%', borderRadius: 8 }} 
             />
           </Box>
-          {/* Thumbnails (optional) */}
         </Grid>
 
         {/* Right Section: Product Details */}
         <Grid item xs={12} md={6}>
-          <Typography variant="h5">{product.name}</Typography> {/* <-- Product Name */}
+          <Typography variant="h5">{product.name}</Typography>
           <Typography variant="h6" sx={{ textDecoration: 'line-through' }}>
-            Rs. {product.price} {/* <-- Original Price */}
+            Rs. {product.price} 
           </Typography>
           <Typography variant="h5" color="error">
             Rs. {product.discountPrice} (Save {((product.price.replace(/[^\d.-]/g, '') - product.discountPrice.replace(/[^\d.-]/g, '')) / product.price.replace(/[^\d.-]/g, '') * 100).toFixed(0)}%)
-          </Typography> {/* <-- Discounted Price */}
+          </Typography>
 
           {/* Product Features */}
           <Box sx={{ mt: 2 }}>

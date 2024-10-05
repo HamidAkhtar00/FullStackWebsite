@@ -9,6 +9,7 @@ import ContactUsComponent from './components/Contact';
 import Shop from './components/Shop';
 import ProductDetails from './components/ProductDetails';
 import FeedbackSlider from './components/Feedback';
+import ShoppingCarts from './components/ShoppingCarts';
 
 
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/feedback" element={<FeedbackSlider />} />
         <Route path="/categories" element={<Shop />} />
         <Route path="/product-details/:id" element={<ProductDetails />} />
+        <Route path="/shopping-cart" element={<ShoppingCarts />} />
       </Routes>
       <Footer />
     </Router>
