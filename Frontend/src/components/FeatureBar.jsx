@@ -32,17 +32,17 @@ const FeatureBar = () => {
         {/* Free Delivery */}
         <Grid item>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <LocalShippingOutlinedIcon sx={{ color: 'red', marginRight: '8px' }} />
+            <LocalShippingOutlinedIcon sx={{ color: 'rgb(18, 96, 113)', marginRight: '8px' }} />
             <Typography variant="body1">Free Delivery In Pakistan</Typography>
           </Box>
         </Grid>
 
-        <Divider orientation="vertical" flexItem sx={{ mx: 2, borderColor: 'red' }} />
+        <Divider orientation="vertical" flexItem sx={{ mx: 2, borderColor: 'rgb(18, 96, 113)' }} />
 
         {/* 7 Days Exchange or Return */}
         <Grid item>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <LoopOutlinedIcon sx={{ color: 'red', marginRight: '8px' }} />
+            <LoopOutlinedIcon sx={{ color: 'rgb(18, 96, 113)', marginRight: '8px' }} />
             <Typography variant="body1">7 Days Exchange or Return</Typography>
           </Box>
         </Grid>

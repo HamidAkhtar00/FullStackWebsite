@@ -23,6 +23,8 @@ const Categories = ({ onCategoryClick }) => {
               onClick={() => onCategoryClick(category.name.toLowerCase())} // On click, pass the category name in lowercase
               sx={{
                 position: 'relative',
+                
+                background: 'linear-gradient(to right bottom, #0071ff, #f3f0ff,#f3faff)',
                 overflow: 'hidden',
                 transition: 'transform 0.3s ease',
                 '&:hover': {

@@ -63,6 +63,8 @@ const Products = ({ selectedCategory }) => {
               onClick={() => handleCartClick(product.id)}
               sx={{
                 width: '100%',
+                background: 'linear-gradient(to right bottom, #f3fff, #f3f0ff,#f3faff)',
+                
                 maxWidth: 280,
                 margin: '16px auto',
                 boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
