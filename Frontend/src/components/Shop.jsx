@@ -20,7 +20,14 @@ const Shop = () => {
 
       {/* Add a button to reset and show the categories again */}
       {!showCategories && (
-        <button onClick={() => setShowCategories(true)}>
+        <button 
+        style = {{
+          color:'#000',
+          backgroundColor:'#f3fcff',
+          border:'None'
+        }}
+        onClick={() => setShowCategories(true)} 
+        >
          Back to Categories
         </button>
       )}

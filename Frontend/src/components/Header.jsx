@@ -43,7 +43,7 @@ const Header = () => {
           <ListItemText primary="FAQ" />
         </ListItem>
         <ListItem button component={Link} to="/Feedback">
-          <ListItemText primary="Feedback" />
+          <ListItemText primary="FeedbackSlider" />
         </ListItem>
       </List>
       <Divider />
@@ -71,7 +71,7 @@ const Header = () => {
   );
 
   return (
-    <AppBar position="sticky" sx={{ backgroundColor: 'white ', color: 'rgb(18, 96, 113)', boxShadow: 'none', borderBottom: '2px solid #ccc',margin:'0px' }}>
+    <AppBar position="sticky" sx={{ backgroundColor:'#f3fcff', color: 'rgb(18, 96, 113)', boxShadow: 'none',borderBottom: '2px solid #ccc',marginTop:0 }}>
       <Toolbar sx={{ justifyContent: 'space-between' }}>
         {/* Left Side - Logo */}
         <img src={logo} alt="chashmay logo" style={{ width: '120px' }} />
@@ -88,10 +88,10 @@ const Header = () => {
             <InputBase
               placeholder="Search your products…"
               inputProps={{ 'aria-label': 'search' }}
-              sx={{ border: '1px solid red', borderRadius: 3, paddingLeft: 2, paddingRight: 2 }}
+              sx={{ border: '1px solid rgb(18, 96, 113)', borderRadius: 3, paddingLeft: 2, paddingRight: 2 }}
             />
             <IconButton type="submit" sx={{ position: 'absolute', right: 0 }}>
-              <SearchIcon sx={{ color: 'red' }} />
+              <SearchIcon sx={{ color: 'rgb(18, 96, 113)' }} />
             </IconButton>
           </div>
           <IconButton color="inherit">

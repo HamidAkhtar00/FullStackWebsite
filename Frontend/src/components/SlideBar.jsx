@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import { Carousel } from 'react-responsive-carousel';
 import FeatureBar from './FeatureBar';
+import { Link } from 'react-router-dom';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Include carousel styles
 import img1 from '../assets/images/slide1.jpg'; // Adjust path accordingly
 import img2 from '../assets/images/vdo2.mp4'; // Adjust path accordingly
@@ -50,13 +51,13 @@ const SlideBar = () => {
                                 autoPlay
                                 muted
                                 loop
-                                style={{ height: "500px", width: "100%", objectFit: "cover" }}
+                                style={{ height: "450px", width: "100%", objectFit: "cover" }}
                             />
                         ) : (
                             <img
                                 src={slide.image}
                                 alt={slide.caption}
-                                style={{ height: "500px", objectFit: "cover" }}
+                                style={{ height: "450px", objectFit: "cover" }}
                             />
                         )}
                         <Box sx={{
@@ -69,17 +70,20 @@ const SlideBar = () => {
                             borderRadius: 1,
                         }}>
                             <Typography variant="h5">{slide.caption}</Typography>
+
+                                                         
                             <Button
-              variant="contained"
-              sx={{
-                alignSelf: 'center',
-                background: 'linear-gradient(to right, #00c6ff, #0072ff)',
-                width: '150px',
-                color: '#fff',
-              }}
-            >
-              Shop Now
-            </Button>
+                                component={Link} to="/categories"                               
+                                sx={{
+                                    alignSelf: 'center',
+                                    background: 'linear-gradient(to right, #00c6ff, #0072ff)',
+                                    width: '150px',
+                                    color: '#fff',
+                                }}
+                                >
+                                Explore More
+                                </Button>
+                                
                         </Box>
                     </div>
                 ))}

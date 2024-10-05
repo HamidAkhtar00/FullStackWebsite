@@ -40,7 +40,7 @@ const quickLinks = [
 
 const Footer = () => {
   return (
-    <Box sx={{ backgroundColor: '#f5f5f5', padding: '40px 20px', marginTop: 'auto' }}>
+    <Box sx={{ backgroundColor:'#f3fcff', padding: '40px 20px', marginTop: 'auto' }}>
       <Grid container spacing={4} justifyContent="center">
         
         {/* Logo and Social Links */}
@@ -56,10 +56,10 @@ const Footer = () => {
               <FacebookIcon style={{ color: 'blue' }}/>
             </IconButton>
             <IconButton href="#" aria-label="YouTube">
-              <YouTubeIcon style={{ color: 'red' }}/>
+              <YouTubeIcon style={{ color: 'blue' }}/>
             </IconButton>
             <IconButton href="#" aria-label="Instagram">
-              <InstagramIcon style={{ color: 'orange' }}/>
+              <InstagramIcon style={{ color: 'blue' }}/>
             </IconButton>
             <IconButton href="#" aria-label="Pinterest">
               <PinterestIcon style={{ color: 'blue' }}/>

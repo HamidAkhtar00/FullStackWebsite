@@ -5,11 +5,13 @@ import FAQComponent from './Faq';
 import ContactUsComponent from './Contact';
 import FeedbackSlider from './Feedback';
 import Shop from './Shop';
+import SlideBar from './SlideBar';
 
 
 const Home = () => {
   return (
     <div>
+      <SlideBar/>
       <Shop />
       <ContactUsComponent/>
       <FAQComponent/>
