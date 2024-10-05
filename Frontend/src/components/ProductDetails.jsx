@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import { Grid, Typography, Box, Button, IconButton, Radio, RadioGroup, FormControlLabel, TextField, Icon } from '@mui/material';
-import { useNavigate, useParams } from 'react-router-dom'; // <-- Add `useParams` import
+import { Grid, Typography, Box, Button, IconButton, Radio, RadioGroup, FormControlLabel, TextField } from '@mui/material';
+import { useNavigate, useLocation } from 'react-router-dom'; // <-- useLocation to retrieve product details
 import { Add, Remove } from '@mui/icons-material';
 
 const ProductDetails = () => {
-  const { id } = useParams(); // <-- This retrieves the `id` from the URL
   const navigate = useNavigate();
+  const { state } = useLocation();  // <-- Retrieve the state passed from Products component
+  const { product } = state;        // Destructure the product from state
 
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState('56/18/135/140');
   const [selectedColor, setSelectedColor] = useState('Gold/Black');
 
   const handleAddToCart = () => {
-    // Navigate to shopping cart on add to cart click
     navigate('/shopping-cart');
   };
 
@@ -23,31 +23,23 @@ const ProductDetails = () => {
         <Grid item xs={12} md={6}>
           <Box sx={{ position: 'relative' }}>
             <img 
-              src="" 
-              alt="Product" 
+              src={product.image} // <-- Change imageUrl to image
+              alt={product.name} 
               style={{ width: '100%', borderRadius: 8 }} 
             />
-            {/* Add navigation for images */}
-            <IconButton sx={{ position: 'absolute', left: 0, top: '50%' }}>
-              <Icon>chevron_left</Icon>
-            </IconButton>
-            <IconButton sx={{ position: 'absolute', right: 0, top: '50%' }}>
-              <Icon>chevron_right</Icon>
-            </IconButton>
           </Box>
-          {/* Thumbnails */}
-          <Box sx={{ display: 'flex', justifyContent: 'space-around', mt: 2 }}>
-            <img src="path_to_thumbnail1" alt="Thumbnail" width="50" />
-            <img src="path_to_thumbnail2" alt="Thumbnail" width="50" />
-            {/* Add more thumbnails */}
-          </Box>
+          {/* Thumbnails (optional) */}
         </Grid>
 
         {/* Right Section: Product Details */}
         <Grid item xs={12} md={6}>
-          <Typography variant="h5">OVision 1009 Aviator Eyeglasses</Typography>
-          <Typography variant="h6" sx={{ textDecoration: 'line-through' }}>Rs. 2,650.00</Typography>
-          <Typography variant="h5" color="error">Rs. 2,120.00 (Save 20%)</Typography>
+          <Typography variant="h5">{product.name}</Typography> {/* <-- Product Name */}
+          <Typography variant="h6" sx={{ textDecoration: 'line-through' }}>
+            Rs. {product.price} {/* <-- Original Price */}
+          </Typography>
+          <Typography variant="h5" color="error">
+            Rs. {product.discountPrice} (Save {((product.price.replace(/[^\d.-]/g, '') - product.discountPrice.replace(/[^\d.-]/g, '')) / product.price.replace(/[^\d.-]/g, '') * 100).toFixed(0)}%)
+          </Typography> {/* <-- Discounted Price */}
 
           {/* Product Features */}
           <Box sx={{ mt: 2 }}>
@@ -103,7 +95,9 @@ const ProductDetails = () => {
           </Button>
 
           {/* Stock Info */}
-          <Typography variant="body2" color="error" sx={{ mt: 1 }}>HURRY! ONLY 13 LEFT IN STOCK.</Typography>
+          <Typography variant="body2" color="error" sx={{ mt: 1 }}>
+            HURRY! ONLY 13 LEFT IN STOCK.
+          </Typography>
         </Grid>
       </Grid>
     </Box>
