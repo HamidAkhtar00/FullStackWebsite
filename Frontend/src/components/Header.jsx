@@ -100,7 +100,7 @@ const Header = () => {
           <IconButton color="inherit">
             <FavoriteBorderIcon />
           </IconButton>
-          <IconButton color="inherit">
+          <IconButton color="inherit" component={Link} to="/shopping-cart">
             <ShoppingCartIcon />
           </IconButton>
         </Box>
