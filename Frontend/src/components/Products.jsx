@@ -18,7 +18,8 @@ import productImg11 from '../assets/productImage/p11.jpg';
 import productImg12 from '../assets/productImage/p12.jpg';
 
 const Products = ({ selectedCategory }) => {
-  const navigate = useNavigate();
+const navigate = useNavigate();
+
 
   const productsData = [
     { id: 1, image: productImg1, name: "Lenskart Air", category: "men", price: "$120", discountPrice: "$100", rating: 4.6, reviews: 615, sizes: ["M", "L", "XL"] },
@@ -34,6 +35,19 @@ const Products = ({ selectedCategory }) => {
     { id: 11, image: productImg11, name: "John Jacobs", category: "women", price: "$150", discountPrice: "$130", rating: 4.2, reviews: 200, sizes: ["S", "M"] },
     { id: 12, image: productImg12, name: "Vincent Chase", category: "kids", price: "$50", discountPrice: "$40", rating: 4.8, reviews: 24, sizes: ["XS", "S"] },
   ];
+  const handleAddToCart = () => {
+    const productData = {
+      id: product.id, // Assuming each product has a unique id
+      name: product.name,
+      image: product.image, // Ensure this is a valid URL
+      price: product.price, // Ensure this is a number or string representing a number
+      discountPrice: product.discountPrice, // Ensure this is a number or string representing a number
+      quantity: quantity,
+    };
+    
+    addToCart(productData);
+    navigate('/shopping-cart');
+  };//------------------------------
 
   // Filter products based on selected category
   const filteredProducts = selectedCategory === 'all'
@@ -92,12 +106,14 @@ const Products = ({ selectedCategory }) => {
                 <IconButton aria-label="like">
                   <FavoriteIcon color="error" />
                 </IconButton>
-                <IconButton aria-label="add to cart" onClick={() => handleCartClick(product)}>
+                <IconButton aria-label="add to cart" onClick={handleAddToCart}>
                   <ShoppingCartIcon color="primary" />
                 </IconButton>
               </CardActions>
             </Card>
+            
           ))}
+          
         </Box>
       ),
     },

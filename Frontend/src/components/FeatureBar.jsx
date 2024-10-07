@@ -22,12 +22,12 @@ const FeatureBar = () => {
         {/* Premium Quality Products */}
         <Grid item>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <ShieldOutlinedIcon sx={{ color: 'red', marginRight: '8px' }} />
+            <ShieldOutlinedIcon sx={{ color: 'rgb(18, 96, 113)', marginRight: '8px' }} />
             <Typography variant="body1">Premium Quality Products</Typography>
           </Box>
         </Grid>
 
-        <Divider orientation="vertical" flexItem sx={{ mx: 2, borderColor: 'red' }} />
+        <Divider orientation="vertical" flexItem sx={{ mx: 2, borderColor: 'rgb(18, 96, 113)' }} />
 
         {/* Free Delivery */}
         <Grid item>
@@ -47,7 +47,7 @@ const FeatureBar = () => {
           </Box>
         </Grid>
 
-        <Divider orientation="vertical" flexItem sx={{ mx: 2, borderColor: 'red' }} />
+        <Divider orientation="vertical" flexItem sx={{ mx: 2, borderColor: 'rgb(18, 96, 113)' }} />
 
         {/* Reviews */}
         <Grid item>

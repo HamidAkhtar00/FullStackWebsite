@@ -26,8 +26,11 @@ const ShoppingCart = () => {
                 Rs. {item.price}
               </Typography>
               <Typography variant="h6" color="error">
-                Rs. {parseFloat(item.discountPrice).toFixed(2)}
+                Rs. {item.discountPrice}
               </Typography>
+              {/* <Typography variant="h6" color="error">
+                Rs. {parseFloat(item.discountPrice).toFixed(2)}
+              </Typography> */}
               <Typography variant="body2">Quantity: {item.quantity}</Typography>
             </Box>
             <Box>
@@ -47,24 +50,24 @@ const ShoppingCart = () => {
       <Box 
         sx={{ width: '300px', border: '1px solid #ddd', padding: 3, borderRadius: '8px' }}
       >
-        <Typography variant="h6" sx={{ mb: 2 }}>Order Summary</Typography>
+        <Typography variant="h6" sx={{ mb: 2 }} style={{color:'#006064'}}>Order Summary</Typography>
         <Divider sx={{ mb: 2 }} />
         <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
           <Typography variant="body1">Subtotal</Typography>
-          <Typography variant="body1">Rs. {subtotal.toFixed(2)}</Typography>
+          <Typography variant="body1">Rs. {subtotal}</Typography>
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
           <Typography variant="body1">You Save</Typography>
-          <Typography variant="body1" color="green">Rs. {totalSavings.toFixed(2)}</Typography>
+          <Typography variant="body1" color="green">Rs. {totalSavings}</Typography>
         </Box>
         <Divider sx={{ my: 2 }} />
         <Box sx={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold' }}>
           <Typography variant="h6">Total</Typography>
-          <Typography variant="h6">Rs. {(subtotal).toFixed(2)}</Typography>
+          <Typography variant="h6">Rs. {subtotal}</Typography>
         </Box>
         <Button 
           variant="contained" 
-          sx={{ mt: 3, width: '100%', backgroundColor: '#d32f2f', color: 'white' }}
+          sx={{ mt: 3, width: '100%',backgroundColor: '#006064', '&:hover': { backgroundColor: '#004d40' }, color: 'white' }}
         >
           Proceed to Checkout
         </Button>

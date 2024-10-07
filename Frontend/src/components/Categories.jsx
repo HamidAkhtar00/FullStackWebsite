@@ -52,7 +52,7 @@ const Categories = ({ onCategoryClick }) => {
                 }}
               >
                 <Typography variant="h5" align="center">
-                  {category.name}
+                  {category.name}'s Glasses
                 </Typography>
                 <Button
                   variant="contained"

@@ -51,7 +51,10 @@ const ProductDetails = () => {
             Rs. {product.price} 
           </Typography>
           <Typography variant="h5" color="error">
-            Rs. {product.discountPrice} (Save {((product.price.replace(/[^\d.-]/g, '') - product.discountPrice.replace(/[^\d.-]/g, '')) / product.price.replace(/[^\d.-]/g, '') * 100).toFixed(0)}%)
+            Rs. {product.discountPrice}
+          </Typography>
+          <Typography variant="h5" color="error">
+            (Save {((product.price.replace(/[^\d.-]/g, '') - product.discountPrice.replace(/[^\d.-]/g, '')) / product.price.replace(/[^\d.-]/g, '') * 100).toFixed(0)}%)
           </Typography>
 
           {/* Product Features */}
