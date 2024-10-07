@@ -24,7 +24,7 @@ const ProductDetails = () => {
       discountPrice: product.discountPrice, // Ensure this is a number or string representing a number
       quantity: quantity,
     };
-    
+     
     addToCart(productData);
     navigate('/shopping-cart');
   };

@@ -1,13 +1,22 @@
 import React, { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
+import { useNavigate } from 'react-router-dom';
 import { Box, Typography, Button, Divider } from '@mui/material';
 
 const ShoppingCart = () => {
   const { cartItems, removeFromCart } = useContext(CartContext);
-  
-  // Temporary discount and total calculations
-  const subtotal = cartItems.reduce((acc, item) => acc + item.discountPrice * item.quantity, 0);
-  const totalSavings = cartItems.reduce((acc, item) => acc + (item.price - item.discountPrice) * item.quantity, 0);
+  const navigate = useNavigate(); // Add navigate hook
+
+  // Ensure all values are numeric and handle missing or undefined values
+  const subtotal = cartItems.reduce(
+    (acc, item) => acc + parseFloat(item.discountPrice || 0) * (item.quantity || 1), 
+    0
+  );
+
+  const totalSavings = cartItems.reduce(
+    (acc, item) => acc + (parseFloat(item.price || 0) - parseFloat(item.discountPrice || 0)) * (item.quantity || 1), 
+    0
+  );
 
   return (
     <Box sx={{ display: 'flex', padding: 4, gap: 4 }}>
@@ -28,9 +37,6 @@ const ShoppingCart = () => {
               <Typography variant="h6" color="error">
                 Rs. {item.discountPrice}
               </Typography>
-              {/* <Typography variant="h6" color="error">
-                Rs. {parseFloat(item.discountPrice).toFixed(2)}
-              </Typography> */}
               <Typography variant="body2">Quantity: {item.quantity}</Typography>
             </Box>
             <Box>
@@ -67,7 +73,8 @@ const ShoppingCart = () => {
         </Box>
         <Button 
           variant="contained" 
-          sx={{ mt: 3, width: '100%',backgroundColor: '#006064', '&:hover': { backgroundColor: '#004d40' }, color: 'white' }}
+          sx={{ mt: 3, width: '100%', backgroundColor: '#006064', '&:hover': { backgroundColor: '#004d40' }, color: 'white' }}
+          onClick={() => navigate('/checkout', { state: { subtotal, totalSavings } })} // Pass data as state
         >
           Proceed to Checkout
         </Button>

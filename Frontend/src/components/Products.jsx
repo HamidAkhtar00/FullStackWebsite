@@ -22,18 +22,18 @@ const navigate = useNavigate();
 
 
   const productsData = [
-    { id: 1, image: productImg1, name: "Lenskart Air", category: "men", price: "$120", discountPrice: "$100", rating: 4.6, reviews: 615, sizes: ["M", "L", "XL"] },
-    { id: 2, image: productImg2, name: "John Jacobs", category: "women", price: "$150", discountPrice: "$130", rating: 4.2, reviews: 200, sizes: ["S", "M"] },
-    { id: 3, image: productImg3, name: "Vincent Chase", category: "kids", price: "$50", discountPrice: "$40", rating: 4.8, reviews: 24, sizes: ["XS", "S"] },
-    { id: 4, image: productImg4, name: "Lenskart Air", category: "men", price: "$120", discountPrice: "$100", rating: 4.6, reviews: 615, sizes: ["M", "L", "XL"] },
-    { id: 5, image: productImg5, name: "John Jacobs", category: "women", price: "$150", discountPrice: "$130", rating: 4.2, reviews: 200, sizes: ["S", "M"] },
-    { id: 6, image: productImg6, name: "Vincent Chase", category: "kids", price: "$50", discountPrice: "$40", rating: 4.8, reviews: 24, sizes: ["XS", "S"] },
-    { id: 7, image: productImg7, name: "Lenskart Air", category: "men", price: "$120", discountPrice: "$100", rating: 4.6, reviews: 615, sizes: ["M", "L", "XL"] },
-    { id: 8, image: productImg8, name: "John Jacobs", category: "women", price: "$150", discountPrice: "$130", rating: 4.2, reviews: 200, sizes: ["S", "M"] },
-    { id: 9, image: productImg9, name: "Vincent Chase", category: "kids", price: "$50", discountPrice: "$40", rating: 4.8, reviews: 24, sizes: ["XS", "S"] },
-    { id: 10, image: productImg10, name: "Lenskart Air", category: "men", price: "$120", discountPrice: "$100", rating: 4.6, reviews: 615, sizes: ["M", "L", "XL"] },
-    { id: 11, image: productImg11, name: "John Jacobs", category: "women", price: "$150", discountPrice: "$130", rating: 4.2, reviews: 200, sizes: ["S", "M"] },
-    { id: 12, image: productImg12, name: "Vincent Chase", category: "kids", price: "$50", discountPrice: "$40", rating: 4.8, reviews: 24, sizes: ["XS", "S"] },
+    { id: 1, image: productImg1, name: "Lenskart Air", category: "men", price: "120", discountPrice: "100", rating: 4.6, reviews: 615, sizes: ["M", "L", "XL"] },
+    { id: 2, image: productImg2, name: "John Jacobs", category: "women", price: "150", discountPrice: "130", rating: 4.2, reviews: 200, sizes: ["S", "M"] },
+    { id: 3, image: productImg3, name: "Vincent Chase", category: "kids", price: "50", discountPrice: "40", rating: 4.8, reviews: 24, sizes: ["XS", "S"] },
+    { id: 4, image: productImg4, name: "Lenskart Air", category: "men", price: "120", discountPrice: "100", rating: 4.6, reviews: 615, sizes: ["M", "L", "XL"] },
+    { id: 5, image: productImg5, name: "John Jacobs", category: "women", price: "150", discountPrice: "130", rating: 4.2, reviews: 200, sizes: ["S", "M"] },
+    { id: 6, image: productImg6, name: "Vincent Chase", category: "kids", price: "50", discountPrice: "40", rating: 4.8, reviews: 24, sizes: ["XS", "S"] },
+    { id: 7, image: productImg7, name: "Lenskart Air", category: "men", price: "120", discountPrice: "100", rating: 4.6, reviews: 615, sizes: ["M", "L", "XL"] },
+    { id: 8, image: productImg8, name: "John Jacobs", category: "women", price: "150", discountPrice: "130", rating: 4.2, reviews: 200, sizes: ["S", "M"] },
+    { id: 9, image: productImg9, name: "Vincent Chase", category: "kids", price: "50", discountPrice: "40", rating: 4.8, reviews: 24, sizes: ["XS", "S"] },
+    { id: 10, image: productImg10, name: "Lenskart Air", category: "men", price: "120", discountPrice: "100", rating: 4.6, reviews: 615, sizes: ["M", "L", "XL"] },
+    { id: 11, image: productImg11, name: "John Jacobs", category: "women", price: "150", discountPrice: "130", rating: 4.2, reviews: 200, sizes: ["S", "M"] },
+    { id: 12, image: productImg12, name: "Vincent Chase", category: "kids", price: "50", discountPrice: "40", rating: 4.8, reviews: 24, sizes: ["XS", "S"] },
   ];
   const handleAddToCart = () => {
     const productData = {
@@ -99,8 +99,8 @@ const navigate = useNavigate();
                   <Rating value={product.rating} precision={0.1} readOnly size="small" />
                   <Typography variant="body2" color="textSecondary">({product.reviews})</Typography>
                 </Box>
-                <Typography variant="body2" sx={{ textDecoration: 'line-through' }}>{product.price}</Typography>
-                <Typography variant="h6" color="primary">{product.discountPrice}</Typography>
+                <Typography variant="body2" sx={{ textDecoration: 'line-through' }}>Rs. {product.price}</Typography>
+                <Typography variant="h6" color="primary">Rs. {product.discountPrice}</Typography>
               </CardContent>
               <CardActions sx={{ justifyContent: 'space-between', padding: '0 16px 16px' }}>
                 <IconButton aria-label="like">
