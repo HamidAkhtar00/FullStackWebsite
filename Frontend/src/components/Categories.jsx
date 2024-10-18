@@ -16,7 +16,7 @@ const Categories = ({ onCategoryClick }) => {
       <Typography variant="h4" align="center" gutterBottom>
         Shop by Category
       </Typography>
-      <Grid container spacing={2} justifyContent="center">
+      <Grid container spacing={6} justifyContent="center">
         {categories.map(category => (
           <Grid item key={category.id} xs={12} sm={6} md={4}>
             <Card

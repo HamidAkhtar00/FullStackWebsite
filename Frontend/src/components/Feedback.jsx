@@ -6,7 +6,10 @@ import Slider from 'react-slick';
 import { Box, Typography, Avatar, Rating } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import customer1 from '../assets/images/img1.png'
+import customer1 from '../assets/images/imgr1.png'
+import customer2 from '../assets/images/imgr2.png'
+import customer3 from '../assets/images/imgr3.png'
+import customer4 from '../assets/images/imgr4.png'
 const feedbacks = [
   {
     name: 'Hamid Akhtar',
@@ -17,20 +20,20 @@ const feedbacks = [
   },
   {
     name: 'Liaqat Ali',
-    image: customer1,
+    image: customer2,
     rating: 4,
     description:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Est voluptate, nisi ratione consequuntur assumenda obcaecati iste.',
   },
   {
-    name: 'Sam Wilson',
-    image: customer1,
+    name: 'Musharaf Ali',
+    image: customer3,
     rating: 5,
     description: 'Excellent support and fast delivery! Amazing products! I will order again',
   },
   {
-    name: 'Alex Johnson',
-    image: customer1,
+    name: 'Abid Hussain',
+    image: customer4,
     rating: 3,
     description: 'Decent quality but could be improved in terms of delivery.',
   },
