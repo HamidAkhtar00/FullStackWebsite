@@ -1,18 +1,37 @@
 import React, { useState } from 'react';
 import {
   AppBar, Toolbar, IconButton, Typography, InputBase, Drawer, List, ListItem, ListItemText,
-  Divider, Box
+  Divider, Box, Menu, MenuItem
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SearchIcon from '@mui/icons-material/Search';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/images/logo1.png'; // Import the logo
 
 const Header = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const navigate = useNavigate();
+
+  const handleAccountMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleAccountMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleMenuClick = (page) => {
+    handleAccountMenuClose();
+    if (page === 'login') {
+      navigate('/login'); // Navigate to the login page
+    } else if (page === 'profile') {
+      navigate('/profile'); // Navigate to the profile page (if available)
+    }
+  };
 
   const toggleDrawer = (open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -42,7 +61,7 @@ const Header = () => {
         <ListItem button component={Link} to="/faq">
           <ListItemText primary="FAQ" />
         </ListItem>
-        <ListItem button component={Link} to="/Feedback">
+        <ListItem button component={Link} to="/feedback">
           <ListItemText primary="FeedbackSlider" />
         </ListItem>
       </List>
@@ -94,7 +113,7 @@ const Header = () => {
               <SearchIcon sx={{ color: 'rgb(18, 96, 113)' }} />
             </IconButton>
           </div>
-          <IconButton color="inherit">
+          <IconButton color="inherit" onClick={handleAccountMenuOpen}>
             <AccountCircle />
           </IconButton>
           <IconButton color="inherit">
@@ -107,7 +126,7 @@ const Header = () => {
 
         {/* Mobile View */}
         <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center' }}>
-          <IconButton color="inherit">
+          <IconButton color="inherit" onClick={handleAccountMenuOpen}>
             <AccountCircle />
           </IconButton>
           <IconButton edge="end" color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
@@ -115,6 +134,16 @@ const Header = () => {
           </IconButton>
         </Box>
       </Toolbar>
+
+      {/* Account Dropdown Menu */}
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleAccountMenuClose}
+      >
+        <MenuItem onClick={() => handleMenuClick('profile')}>Profile</MenuItem>
+        <MenuItem onClick={() => handleMenuClick('login')}>Login</MenuItem>
+      </Menu>
 
       {/* Drawer for Mobile Menu */}
       <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>

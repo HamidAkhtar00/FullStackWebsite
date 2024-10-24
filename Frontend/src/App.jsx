@@ -11,6 +11,8 @@ import ProductDetails from './components/ProductDetails';
 import FeedbackSlider from './components/Feedback';
 import ShoppingCarts from './components/ShoppingCarts';
 import Checkout from './components/Checkout';
+import Login from './components/loginform';
+import SignUp from './components/SignupForm';
 
 
 
@@ -28,6 +30,8 @@ function App() {
         <Route path="/product-details/:id" element={<ProductDetails />} />
         <Route path="/shopping-cart" element={<ShoppingCarts />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/Signup" element={<SignUp />} />
       </Routes>
       <Footer />
     </Router>
