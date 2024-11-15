@@ -5,10 +5,27 @@ import { useNavigate } from 'react-router-dom';
 const SignUp = () => {
   const navigate = useNavigate();
 
-  const handleSignUp = (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
-    // Add sign-up functionality here
+    const username = e.target[0].value;
+    const email = e.target[1].value;
+    const password = e.target[2].value;
+    const confirmPassword = e.target[3].value;
+  
+    if (password !== confirmPassword) {
+      alert('Passwords do not match!');
+      return;
+    }
+  
+    try {
+      const response = await axios.post('/api/users/register', { username, email, password });
+      alert(response.data.message);
+      navigate('/login');
+    } catch (error) {
+      alert(error.response.data.message || 'Registration failed');
+    }
   };
+  
 
   return (
     <Box 
@@ -27,6 +44,13 @@ const SignUp = () => {
         Sign Up Here
       </Typography>
       
+      <TextField
+        label="Enter Username"
+        variant="standard"
+        fullWidth
+        sx={{ mb: 2, input: { color: 'orange' }, '& .MuiInput-underline:before': { borderBottomColor: 'orange' } }}
+        InputLabelProps={{ style: { color: '#fff' } }}
+      />
       <TextField
         label="Enter Email Here"
         variant="standard"

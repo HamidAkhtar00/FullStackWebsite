@@ -1,45 +1,21 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv'
+// app.js
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const userRoutes = require('./routes/userRoutes.js');
 
-dotenv.config();
-const app  = express();
-app.use(express.json());
+const app = express();
+const PORT = process.env.PORT || 5000;
 
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost:27017', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log('MongoDB connected'))
+.catch((error) => console.log('MongoDB connection error:', error));
 
-const DatabaseConnection = async ()=>{
-    try{
-        await mongoose.connect(process.env.MONGO_URL);
-        console.log("Sucessful connection from mongoodb");
-    }catch{
-        console.log("Connection error!!");
-    }
-}
+app.use(bodyParser.json());
+app.use('/api/users', userRoutes);
 
-mongoose.connection.on('disconnected',()=>{
-    console.log('mongoDB Disconnected')
-});
-const port = 8080;
-app.get('/',(req,res)=>{
-    res.send("hello");
-});
-app.get('/api',(req,res)=>{
-    res.json({message: "contact us 24/7 "});
-});
-
-app.post('/apii/:id',(req,res)=>{
-    const query = req.query.name
-    
-    const param = req.params.id
-    const Data = `Requests From Frontend: query,${query}, param is: ${param}`
-    
-    res.status(200).json({message:'sucessfuly ',data:Data})
-    console.log("post successful");
-});
-
-const ports = process.env.PORT || 8000
-app.listen(ports,()=>{
-    DatabaseConnection();
-    console.log('app running from port',port)
-    console.log("Connected to backend.");
-});
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
