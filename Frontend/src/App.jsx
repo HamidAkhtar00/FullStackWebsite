@@ -1,5 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'; // Add Navigate import here
+import DashboardLayout from './components/dashboard/DashboardLayout';
+import Order from './components/dashboard/Order';
+import Wishlist from './components/dashboard/Wishlist';
+import Profile from './components/dashboard/Profile';
+
 import Header from './components/Header';
 // import SlideBar from './components/SlideBar';
 import Home from './components/Home'
@@ -32,6 +37,13 @@ function App() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/login" element={<Login />} />
         <Route path="/Signup" element={<SignUp />} />
+        <Route path="/" element={<Navigate to="/dashboard/orders" />} />
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route path="orders" element={<Order />} />
+          <Route path="wishlist" element={<Wishlist />} />
+          <Route path="profile" element={<Profile />} />
+        </Route>
+
       </Routes>
       <Footer />
     </Router>

@@ -29,7 +29,7 @@ const Header = () => {
     if (page === 'login') {
       navigate('/login'); // Navigate to the login page
     } else if (page === 'profile') {
-      navigate('/profile'); // Navigate to the profile page (if available)
+      navigate('/dashboard/profile'); // Navigate to the profile page on the dashboard
     }
   };
 
@@ -137,13 +137,13 @@ const Header = () => {
 
       {/* Account Dropdown Menu */}
       <Menu
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={handleAccountMenuClose}
-      >
-        <MenuItem onClick={() => handleMenuClick('profile')}>Profile</MenuItem>
-        <MenuItem onClick={() => handleMenuClick('login')}>Login</MenuItem>
-      </Menu>
+  anchorEl={anchorEl}
+  open={Boolean(anchorEl)}
+  onClose={handleAccountMenuClose}
+>
+  <MenuItem onClick={() => handleMenuClick('profile')}>Profile</MenuItem>
+  <MenuItem onClick={() => handleMenuClick('login')}>Login</MenuItem>
+</Menu>
 
       {/* Drawer for Mobile Menu */}
       <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
